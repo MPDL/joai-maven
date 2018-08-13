@@ -351,7 +351,7 @@
 											it to the deployment directory afterwards -->
 										<scp
 											file="${project.build.directory}/${project.build.finalName}.${project.packaging}"
-											remoteTofile="${jboss.user.scp}:${jboss.install.dir}/standalone/deployments/admintool.war"
+											remoteTofile="${jboss.user.scp}:${jboss.install.dir}/standalone/deployments/oai.war"
 											keyfile="${user.home}/.ssh/id_rsa"
 											knownhosts="${user.home}/.ssh/known_hosts" passphrase=""
 											trust="true" verbose="true" />
