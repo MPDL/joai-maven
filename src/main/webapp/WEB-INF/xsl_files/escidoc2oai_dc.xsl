@@ -50,7 +50,7 @@
 	    	</xsl:if>
 
 			<!--  dc:identifier File Handles -->
-			<xsl:for-each select="./escidocComponents:components/escidocComponents:component/escidocComponents:properties">
+			<xsl:for-each select="./escidocComponents:components/escidocComponents:component[escidocComponents:content/@storage='internal-managed']/escidocComponents:properties">
 			    <xsl:variable name="pidFile" select="prop:pid"/>
 			    <xsl:if test="$pidFile != ''">
 				    <dc:identifier>
@@ -60,7 +60,7 @@
 			</xsl:for-each>
 
 			<!--  dc:format File Handles -->
-			<xsl:for-each select="./escidocComponents:components/escidocComponents:component/escidocComponents:properties">
+			<xsl:for-each select="./escidocComponents:components/escidocComponents:component[escidocComponents:content/@storage='internal-managed']/escidocComponents:properties">
 			    <xsl:variable name="format" select="prop:mime-type"/>
 			    <xsl:if test="$format != ''">
 				    <dc:format>
@@ -70,53 +70,45 @@
 			</xsl:for-each>
 
 			<!--  dc:rights File Handles -->
-			<xsl:for-each select="./escidocComponents:components/escidocComponents:component/escidocComponents:properties">
-			    <xsl:variable name="visibility" select="prop:visibility"/>
-			    <xsl:variable name="category" select="prop:content-category"/>
-			    <xsl:if test="$visibility != '' and $category != ''">
-						<xsl:choose>
-							<xsl:when test="$visibility = 'public'">
-								<xsl:choose>
-									<xsl:when test="$category = 'any-fulltext'
-									             or $category = 'publisher-version'
-									             or $category = 'post-print'
-									             or $category = 'pre-print'">
-                      				    <dc:rights>
-            								<xsl:value-of select="'info:eu-repo/semantics/openAccess'"/>				
-                	    			    </dc:rights>
-									</xsl:when>
-								</xsl:choose>
-							</xsl:when>
-							
-							<xsl:when test="$visibility = 'audience'">
-								<xsl:choose>
-									<xsl:when test="$category = 'any-fulltext'
-									             or $category = 'publisher-version'
-									             or $category = 'post-print'
-									             or $category = 'pre-print'">
-                      				    <dc:rights>
-            								<xsl:value-of select="'info:eu-repo/semantics/restrictedAccess'"/>				
-                	    			    </dc:rights>
-									</xsl:when>
-								</xsl:choose>
-							</xsl:when>
-							
-							<xsl:when test="$visibility = 'private'">
-								<xsl:choose>
-									<xsl:when test="$category = 'any-fulltext'
-									             or $category = 'publisher-version'
-									             or $category = 'post-print'
-									             or $category = 'pre-print'">
-                      				    <dc:rights>
-            								<xsl:value-of select="'info:eu-repo/semantics/closedAccess'"/>				
-                	    			    </dc:rights>
-									</xsl:when>
-								</xsl:choose>
-							</xsl:when>
-						</xsl:choose>
-		    	</xsl:if>
-			</xsl:for-each>
+				<xsl:choose>
+					<xsl:when test="./escidocComponents:components/escidocComponents:component[escidocComponents:content/@storage='internal-managed']/escidocComponents:properties[prop:visibility='public']/prop:content-category='any-fulltext'
+						or ./escidocComponents:components/escidocComponents:component[escidocComponents:content/@storage='internal-managed']/escidocComponents:properties[prop:visibility='public']/prop:content-category='publisher-version' 
+						or ./escidocComponents:components/escidocComponents:component[escidocComponents:content/@storage='internal-managed']/escidocComponents:properties[prop:visibility='public']/prop:content-category='post-print'
+						or ./escidocComponents:components/escidocComponents:component[escidocComponents:content/@storage='internal-managed']/escidocComponents:properties[prop:visibility='public']/prop:content-category='pre-print'">
+						<dc:rights>
+							<xsl:value-of select="'info:eu-repo/semantics/openAccess'"/>
+						</dc:rights>
+					</xsl:when>
+					<xsl:when test="./escidocComponents:components/escidocComponents:component[escidocComponents:content/@storage='internal-managed']/escidocComponents:properties[prop:visibility='audience']/prop:content-category='any-fulltext'
+						or ./escidocComponents:components/escidocComponents:component[escidocComponents:content/@storage='internal-managed']/escidocComponents:properties[prop:visibility='public']/prop:content-category='publisher-version' 
+						or ./escidocComponents:components/escidocComponents:component[escidocComponents:content/@storage='internal-managed']/escidocComponents:properties[prop:visibility='public']/prop:content-category='post-print'
+						or ./escidocComponents:components/escidocComponents:component[escidocComponents:content/@storage='internal-managed']/escidocComponents:properties[prop:visibility='public']/prop:content-category='pre-print'">
+						<dc:rights>
+							<xsl:value-of select="'info:eu-repo/semantics/restrictedAccess'"/>
+						</dc:rights>
+					</xsl:when>
+					<xsl:when test="./escidocComponents:components/escidocComponents:component[escidocComponents:content/@storage='internal-managed']/escidocComponents:properties[prop:visibility='private']/prop:content-category='any-fulltext'
+						or ./escidocComponents:components/escidocComponents:component[escidocComponents:content/@storage='internal-managed']/escidocComponents:properties[prop:visibility='public']/prop:content-category='publisher-version' 
+						or ./escidocComponents:components/escidocComponents:component[escidocComponents:content/@storage='internal-managed']/escidocComponents:properties[prop:visibility='public']/prop:content-category='post-print'
+						or ./escidocComponents:components/escidocComponents:component[escidocComponents:content/@storage='internal-managed']/escidocComponents:properties[prop:visibility='public']/prop:content-category='pre-print'">
+						<dc:rights>
+						<xsl:value-of select="'info:eu-repo/semantics/closedAccess'"/>
+						</dc:rights>
+					</xsl:when>
+				</xsl:choose>
 
+			<!--  dc:rights File Handles license -->
+				<xsl:choose>
+					<xsl:when test="./escidocComponents:components/escidocComponents:component[escidocComponents:content/@storage='internal-managed']/escidocMetadataRecords:md-records[escidocMetadataRecords:md-record/file:file/dcterms:license!='']">
+						<xsl:variable name="license" select="./escidocComponents:components/escidocComponents:component[escidocComponents:content/@storage='internal-managed']/escidocMetadataRecords:md-records[escidocMetadataRecords:md-record/file:file/dcterms:license!='']/escidocMetadataRecords:md-record/file:file/dcterms:license"/>
+						<xsl:if test="$license != ''">
+							<dc:rights>
+								<xsl:value-of select="$license[position()=1]"/>
+							</dc:rights>
+						</xsl:if>
+					</xsl:when>
+				</xsl:choose>
+			
 			<!--  dc:type  -->
 			<dc:type>
 				<xsl:variable name="publication-type">
@@ -430,7 +422,7 @@
 				</dc:relation>
 			</xsl:if>
 			
-			<xsl:for-each select="./dc:identifier">
+			<xsl:for-each select="./escidocMetadataRecords:md-records/escidocMetadataRecords:md-record/publication:publication/dc:identifier">
 				<dc:relation>
 					<xsl:choose>
 						<xsl:when test="@xsi:type = 'eterms:ISSN'">
