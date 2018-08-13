@@ -350,7 +350,7 @@
 										<!-- first copy the ear file to a temporary directory and move 
 											it to the deployment directory afterwards -->
 										<scp
-											file="${project.build.directory}/${project.build.finalName}.${project.packaging}"
+											file="${project.build.directory}/oai.war"
 											remoteTofile="${jboss.user.scp}:${jboss.install.dir}/standalone/deployments/oai.war"
 											keyfile="${user.home}/.ssh/id_rsa"
 											knownhosts="${user.home}/.ssh/known_hosts" passphrase=""
