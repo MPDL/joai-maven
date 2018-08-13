@@ -6,7 +6,7 @@
  
 <!-- web.xml setup for the jOAI application -->
 <web-app>			   
-	<display-name>jOAI (v@VERSION@)</display-name> 
+	<display-name>jOAI (v${app.version})</display-name> 
 
 	<context-param>        
 		<param-name>hideAdminMenus</param-name>
@@ -60,7 +60,16 @@
 			prevent 'too many open files' errors. For Linux
 			and Windows, this can be set to 500.
 		</description>
-	</context-param>		
+	</context-param>
+	<context-param>  
+		<param-name>repositoryData</param-name>  
+		<param-value>${path.to.repository}</param-value>
+		<description>
+			Location of the persistent, UI-editable application settings and indexes 
+			for the data provider.
+		</description>	  
+    </context-param>
+    <!-- 
 	<context-param>  
 		<param-name>repositoryData</param-name>  
 		<param-value>WEB-INF/repository_settings_and_data</param-value>
@@ -69,6 +78,7 @@
 			for the data provider.
 		</description>	  
     </context-param>
+     -->
 	<context-param> 
       <param-name>repositoryConfigDir</param-name>  
       <param-value>WEB-INF/conf</param-value>  

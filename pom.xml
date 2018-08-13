@@ -23,6 +23,7 @@
 					<webResources>
 						<resource>
 							<directory>${basedir}/src/main/webapp</directory>
+							<filtering>true</filtering>
 						</resource>
 					</webResources>
 				</configuration>
@@ -47,7 +48,6 @@
 						<configuration>
 							<resources>
 								<resource>
-
 									<directory>${basedir}/lib</directory>
 									<includes>
 										<include>**/*.jar</include>

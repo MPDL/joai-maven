@@ -70,7 +70,7 @@
 
 </ul>
 
-Version @VERSION@ of the jOAI software has been tested with Java 8 and Tomcat 7 and 8.
+Version ${app.version} of the jOAI software has been tested with Java 8 and Tomcat 7 and 8.
 
 <h3>Downloading jOAI</h3>
 

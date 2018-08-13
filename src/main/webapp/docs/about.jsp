@@ -59,7 +59,7 @@
 
 <h3>Version</h3>
 
-<p>This is jOAI software version @VERSION@.</p>
+<p>This is jOAI software version ${app.version}.</p>
 
 <p>
 
