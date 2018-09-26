@@ -412,15 +412,17 @@
 			</xsl:if>
 
 			<!--  dc:relation  -->
-			<xsl:variable name="identifier1" select="./escidocMetadataRecords:md-records/escidocMetadataRecords:md-record/publication:publication/project:project-info/project:funding-info/project:funding-organization/dc:identifier"/>
-			<xsl:variable name="identifier2" select="./escidocMetadataRecords:md-records/escidocMetadataRecords:md-record/publication:publication/project:project-info/project:funding-info/project:funding-program/dc:identifier"/>
-			<xsl:variable name="identifier3" select="./escidocMetadataRecords:md-records/escidocMetadataRecords:md-record/publication:publication/project:project-info/dc:identifier"/>
-			<xsl:if test="$identifier1 != '' and $identifier2 != '' and $identifier3 != ''">
-				<dc:relation>
-					<xsl:variable name="relationString" select="concat('info:eu-repo/grantAgreement/', $identifier1, '/', $identifier2, '/', $identifier3 )"/>
-					<xsl:value-of select="$relationString"/>
-				</dc:relation>
-			</xsl:if>
+			<xsl:for-each select="./escidocMetadataRecords:md-records/escidocMetadataRecords:md-record/publication:publication/project:project-info">
+				<xsl:variable name="identifier1" select="./project:funding-info/project:funding-organization/dc:identifier"/>
+				<xsl:variable name="identifier2" select="./project:funding-info/project:funding-program/dc:identifier"/>
+				<xsl:variable name="identifier3" select="./dc:identifier"/>
+				<xsl:if test="$identifier1 != '' and $identifier2 != '' and $identifier3 != ''">
+					<dc:relation>
+						<xsl:variable name="relationString" select="concat('info:eu-repo/grantAgreement/', $identifier1, '/', $identifier2, '/', $identifier3 )"/>
+						<xsl:value-of select="$relationString"/>
+					</dc:relation>
+				</xsl:if>
+			</xsl:for-each>
 			
 			<xsl:for-each select="./escidocMetadataRecords:md-records/escidocMetadataRecords:md-record/publication:publication/dc:identifier">
 				<dc:relation>
