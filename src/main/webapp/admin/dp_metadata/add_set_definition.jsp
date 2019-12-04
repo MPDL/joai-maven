@@ -16,7 +16,7 @@
 <html:html>
   <head>
     <title>${title}</title>
-    <html:base ref="site" />
+    <html:base />
 
 	<%-- Include style/menu templates --%>
 	<%@ include file="../../head.jsp" %>
