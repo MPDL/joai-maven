@@ -72,7 +72,8 @@ public final class GeneralServletTools {
 		if (req.getServerPort() != 80)
 			port = ":" + req.getServerPort();
 
-		String contextURL = (req.getScheme() + "://" + req.getServerName() + port).trim();
+        String contextURL = ("https" + "://" + req.getServerName() + port).trim();
+//		String contextURL = (req.getScheme() + "://" + req.getServerName() + port).trim();
 		return contextURL;
 	}
 
@@ -93,7 +94,8 @@ public final class GeneralServletTools {
 		if (req.getServerPort() != 80)
 			port = ":" + req.getServerPort();
 
-		String contextURL = (req.getScheme() + "://" + req.getServerName() + port + req.getContextPath()).trim();
+        String contextURL = ("https" + "://" + req.getServerName() + port + req.getContextPath()).trim();
+//		String contextURL = (req.getScheme() + "://" + req.getServerName() + port + req.getContextPath()).trim();
 		return contextURL;
 	}
 
