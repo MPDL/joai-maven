@@ -257,8 +257,7 @@ public abstract class SuggestHelper {
 			URL baseUrl = UrlHelper.getUrl(repositoryServiceBaseUrl);
 			// generate instance URL from repositoryBaseServiceUrl
 			StringBuffer s = new StringBuffer();
-            s.append("https");
-//			s.append(baseUrl.getProtocol());
+			s.append(baseUrl.getProtocol());
 			s.append("://");
 			s.append(baseUrl.getHost());
 			if (baseUrl.getPort() != -1) {
