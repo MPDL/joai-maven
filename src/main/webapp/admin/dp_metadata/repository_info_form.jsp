@@ -8,7 +8,7 @@
 <html:html>
   <head>
     <title>${title}</title>
-    <html:base />
+    <html:base ref="site" />
 
 	<%-- Include style/menu templates --%>
 	<%@ include file="../../head.jsp" %>
