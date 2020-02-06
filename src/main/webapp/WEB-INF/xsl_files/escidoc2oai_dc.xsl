@@ -26,8 +26,9 @@
 	
 	<!--
     <xsl:param name="handle-service-url" select="'http://hdl.handle.net/'"/>
-    -->
     <xsl:param name="handle-service-url" select="'https://gfzpublic.gfz-potsdam.de/'"/>
+    -->
+    <xsl:param name="handle-service-url" select="${handleService}'"/>
 	
 	<xsl:template match="node()|@*">
 		    <xsl:apply-templates/>
@@ -487,6 +488,14 @@
 				</xsl:if>
 			</xsl:for-each>
 			
+            <!--  dc:source  -->
+            <xsl:variable name="source" select="normalize-space(./escidocMetadataRecords:md-records/escidocMetadataRecords:md-record/publication:publication/source:source/dc:title)"/>
+            
+            <xsl:if test="$source!=''">
+                <dc:description>
+                    <xsl:value-of select="$source"/>
+                </dc:description>
+            </xsl:if>
 		</oai_dc:dc>
 	</xsl:template>
 	
