@@ -13,6 +13,7 @@ public class PropertyReader {
   private static final String DEFAULT_PROPERTY_FILE = "oai.properties";
 
   private static Properties properties;
+  private static URL solution;
 
   private PropertyReader() {
     loadProperties();
@@ -74,10 +75,32 @@ public class PropertyReader {
    * <code>pubman.properties</code> is used. If no properties can be loaded, the jvm is terminated.
    */
   private static void loadProperties() {
+    String propertiesFile = "";
+    Properties solProperties = new Properties();
+
+    solution = PropertyReader.class.getClassLoader().getResource("solution.properties");
+
+    if (solution != null) {
+      try {
+        InputStream in = getInputStream("solution.properties");
+        solProperties.load(in);
+        in.close();
+
+        String appname = solProperties.getProperty("appname");
+        propertiesFile = appname + ".properties";
+      } catch (IOException e) {
+      }
+
+    } else {
+      // Use Default location of properties file
+      propertiesFile = DEFAULT_PROPERTY_FILE;
+    }
+
     properties = new Properties();
     try {
-      InputStream instream = getInputStream(DEFAULT_PROPERTY_FILE);
+      InputStream instream = getInputStream(propertiesFile);
       properties.load(instream);
+      properties.putAll(solProperties);
       instream.close();
     } catch (IOException e) {
       throw new ExceptionInInitializerError(e);
