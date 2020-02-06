@@ -72,8 +72,8 @@ function showMenus(quant,definedOrientation)
     document.writeln ('<td width="'+menuWidth+'" onclick="tdMouseClick(\''+quant+'mainLink'+x+'\')" onMouseOver="hoverMenu(); popDown(\''+quant+'\','+x+', \''+quant+'button'+x+'\',\''+orientation+'\'); " onMouseOut="clearMenu('+quant+','+x+'); " ')
     if (menuStyle.split(",")[quant-1].toLowerCase() == "3d"){document.writeln ('style="border-left:'+cellBorder+'px solid '+borderHighlight.split(",")[quant-1]+';border-top:'+cellBorder+'px solid '+borderHighlight.split(",")[quant-1]+';border-right:'+cellBorder+'px solid '+borderShadow.split(",")[quant-1]+';border-bottom:'+cellBorder+'px solid '+borderShadow.split(",")[quant-1]+';"');}        
     document.writeln ('><div id="'+quant+'button'+x+'"><table border="0" cellpadding="'+cellPadding.split(",")[quant-1]+'" cellspacing="0" width="100%"><tr><td class="rcMenuStatic'+quant+'" id="'+quant+'cell'+x+'" nowrap>');
-    document.writeln ('<a style="text-decoration:none" id="'+quant+'mainLink'+x+'" href="'+eval("Menu"+quant)[x][1]+'" target="'+eval("Menu"+quant)[x][2]+'" class="rcMenuStatic'+quant+'">'+eval("Menu"+quant)[x][0]+'</a></td>');
     if (subIndicate == 1&&eval("subMenu"+quant)[x].length>=1){
+      document.writeln ('<a style="text-decoration:none" id="'+quant+'mainLink'+x+'" href="'+eval("Menu"+quant)[x][1]+'" target="'+eval("Menu"+quant)[x][2]+'" class="rcMenuStatic'+quant+'">'+eval("Menu"+quant)[x][0]+'</a></td>');
       document.writeln('<td class="rcMenuStatic'+quant+'" id="'+quant+'cell'+x+'a" align="right">');
       document.writeln ('<a style="text-decoration:none" id="'+quant+'mainLink'+x+'a" href="'+eval("Menu"+quant)[x][1]+'" target="'+eval("Menu"+quant)[x][2]+'" class="rcMenuStatic'+quant+'">'+indicator+'</a></td>');}
     document.writeln ('</tr></table></div></td>');    
