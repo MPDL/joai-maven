@@ -284,6 +284,7 @@ public class XSLTransformer {
 	public final static void transformToFile(File inputFile, FileOutputStream fos, Transformer transformer)
 			throws Exception {
 		OutputStreamWriter writer = new OutputStreamWriter(fos, "UTF-8");
+		transformer.setParameter("handle-service-url", "https://gfzpublic.gfz-potsdam.de/");
 		transformer.transform(
 				// Must use FileInputStream so that escaped filename chars like %3A work.
 				new StreamSource(new FileInputStream(inputFile)), new StreamResult(writer));
