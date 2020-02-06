@@ -81,6 +81,7 @@ public class PropertyReader {
     solution = PropertyReader.class.getClassLoader().getResource("solution.properties");
 
     if (solution != null) {
+      System.out.println("solution.properties found");
       try {
         InputStream in = getInputStream("solution.properties");
         solProperties.load(in);
@@ -89,10 +90,11 @@ public class PropertyReader {
         String appname = solProperties.getProperty("appname");
         propertiesFile = appname + ".properties";
       } catch (IOException e) {
+        System.out.println("Exception" + e);
       }
 
     } else {
-      // Use Default location of properties file
+      System.out.println("solution.properties not found");
       propertiesFile = DEFAULT_PROPERTY_FILE;
     }
 
@@ -134,10 +136,12 @@ public class PropertyReader {
     InputStream instream = null;
     // First try to search in file system
     try {
+      System.out.println("load " + filepath);
       instream = new FileInputStream(filepath);
       new File(filepath).getAbsolutePath();
     } catch (Exception e) {
       // try to get resource from classpath
+      System.out.println("load " + filepath);
       URL url = callingClass.getClassLoader().getResource(filepath);
       if (url != null) {
         instream = url.openStream();
@@ -145,6 +149,7 @@ public class PropertyReader {
       }
     }
     if (instream == null) {
+      System.out.println("not loaded " + filepath);
       throw new FileNotFoundException(filepath);
     }
     return instream;
