@@ -8,9 +8,9 @@ var subMenu1 = new Array ()
 	 subMenu1[${menNum}] = new Array()
 	<c:set var="menNum" value="${menNum + 1}"/>
 
-//	Menu1[${menNum}] = new Array ("Search", '<c:url value="/search.jsp"/>',"_top", "left")
-//	 subMenu1[${menNum}] = new Array()
-//	<c:set var="menNum" value="${menNum + 1}"/>
+	Menu1[${menNum}] = new Array ("Search", '<c:url value="/search.jsp"/>',"_top", "left")
+	 subMenu1[${menNum}] = new Array()
+	<c:set var="menNum" value="${menNum + 1}"/>
 	
 	Menu1[${menNum}] = new Array ("Explore", '<c:url value="/oaisearch.do"/>',"_top", "left")
 	 subMenu1[${menNum}] = new Array()
