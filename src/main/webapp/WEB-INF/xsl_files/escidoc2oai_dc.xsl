@@ -491,9 +491,9 @@
             <xsl:variable name="source" select="normalize-space(./escidocMetadataRecords:md-records/escidocMetadataRecords:md-record/publication:publication/source:source/dc:title)"/>
             
             <xsl:if test="$source!=''">
-                <dc:description>
+                <dc:source>
                     <xsl:value-of select="$source"/>
-                </dc:description>
+                </dc:source>
             </xsl:if>
 		</oai_dc:dc>
 	</xsl:template>
