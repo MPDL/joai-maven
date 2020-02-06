@@ -25,10 +25,6 @@
 	<xsl:preserve-space elements="*"/>
 	
     <xsl:param name="handle-service-url"/>
-    <!--
-    <xsl:param name="handle-service-url" select="'http://hdl.handle.net/'"/>
-    <xsl:param name="handle-service-url" select="'https://gfzpublic.gfz-potsdam.de/'"/>
-    -->
 	
 	<xsl:template match="node()|@*">
 		    <xsl:apply-templates/>
