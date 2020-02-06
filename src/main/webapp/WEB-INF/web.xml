@@ -235,11 +235,6 @@
       <param-value>escidoc2oai_dc.xsl|escidoc|oai_dc</param-value>  
     </context-param>	
 
-    <context-param>  
-      <param-name>xslconverter - escidoc to oai_dc converter (GFZ)</param-name>  
-      <param-value>escidoc2oai_dc_gfz.xsl|escidoc|oai_dc</param-value>  
-    </context-param>    
-
 	
 	<!-- To configure a format converter that uses a Java class, the param-name must begin with
 	the string 'javaconverter' and must be unique. The param-value 
