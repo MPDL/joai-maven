@@ -334,17 +334,19 @@ Admin Search</c:set>
 						<c:otherwise>
 							<c:set var="title">
 								<x:out select="$dcRecord/title"/>
-							</c:set>						
+							</c:set>
+							<!--
 							<c:set var="url">
 								<x:out select="$dcRecord/identifier[starts-with(text(),'http')] | identifier[starts-with(text(),'ftp')]"/>
 							</c:set>
 							<c:set var="description">
 								<x:out select="$dcRecord/description"/>
 							</c:set>							
-							
+							-->
 							<c:if test="${not empty title}">
 								<font size=+1><b>${title}</b></font></br>	
 							</c:if>
+                            <!--
 							<c:if test="${not empty url}">
 								<a href='${url}'>${url}</a></br>
 							</c:if>
@@ -353,6 +355,7 @@ Admin Search</c:set>
 									${description}
 								</div>
 							</c:if>
+                            -->
 						</c:otherwise>
 					</c:choose>
 				</c:when>
