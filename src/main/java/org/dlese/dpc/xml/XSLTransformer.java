@@ -35,6 +35,8 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 
+import org.dlese.dpc.util.PropertyReader;
+
 /**
  * Transforms files or Strings using XSL stylesheets. In general, Transformer
  * objects are not thread safe, so external synchornization should be applied in
@@ -284,7 +286,7 @@ public class XSLTransformer {
 	public final static void transformToFile(File inputFile, FileOutputStream fos, Transformer transformer)
 			throws Exception {
 		OutputStreamWriter writer = new OutputStreamWriter(fos, "UTF-8");
-		transformer.setParameter("handle-service-url", "http://hdl.handle.net/");
+		transformer.setParameter("handle-service-url", PropertyReader.getProperty(PropertyReader.HANDLE_SERVICE_URL));
 		transformer.transform(
 				// Must use FileInputStream so that escaped filename chars like %3A work.
 				new StreamSource(new FileInputStream(inputFile)), new StreamResult(writer));
@@ -310,7 +312,7 @@ public class XSLTransformer {
 	public final static String transformFile(String inputFilePath, Transformer transformer) {
 		try {
 			StringWriter writer = new StringWriter();
-			transformer.setParameter("handle-service-url", "http://hdl.handle.net/");
+			transformer.setParameter("handle-service-url", PropertyReader.getProperty(PropertyReader.HANDLE_SERVICE_URL));
 			transformer.transform(new StreamSource(new FileInputStream(inputFilePath)), new StreamResult(writer));
 			return writer.toString();
 		} catch (Throwable e) {
@@ -337,7 +339,7 @@ public class XSLTransformer {
 			StringWriter writer = new StringWriter();
 			StreamSource ss = new StreamSource(new FileInputStream(inputFile));
 			ss.setSystemId(inputFile);
-			transformer.setParameter("handle-service-url", "http://hdl.handle.net/");
+			transformer.setParameter("handle-service-url", PropertyReader.getProperty(PropertyReader.HANDLE_SERVICE_URL));
 			transformer.transform(ss, new StreamResult(writer));
 			return writer.toString();
 		} catch (Throwable e) {
@@ -363,7 +365,7 @@ public class XSLTransformer {
 	public final static StringWriter transformFileToWriter(String inputFilePath, Transformer transformer) {
 		try {
 			StringWriter writer = new StringWriter();
-			transformer.setParameter("handle-service-url", "http://hdl.handle.net/");
+			transformer.setParameter("handle-service-url", PropertyReader.getProperty(PropertyReader.HANDLE_SERVICE_URL));
 			transformer.transform(new StreamSource(new FileInputStream(inputFilePath)), new StreamResult(writer));
 			return writer;
 		} catch (Throwable e) {
@@ -389,7 +391,7 @@ public class XSLTransformer {
 		try {
 			StringWriter writer = new StringWriter();
 			StreamSource source = new StreamSource(new StringReader(xmlString));
-			transformer.setParameter("handle-service-url", "http://hdl.handle.net/");
+			transformer.setParameter("handle-service-url", PropertyReader.getProperty(PropertyReader.HANDLE_SERVICE_URL));
 			transformer.transform(source, new StreamResult(writer));
 			return writer.toString();
 		} catch (Throwable e) {
@@ -416,7 +418,7 @@ public class XSLTransformer {
 		try {
 			StringWriter writer = new StringWriter();
 			StreamSource source = new StreamSource(new StringReader(xmlString));
-		    transformer.setParameter("handle-service-url", "http://hdl.handle.net/");
+		    transformer.setParameter("handle-service-url", PropertyReader.getProperty(PropertyReader.HANDLE_SERVICE_URL));
 			transformer.transform(source, new StreamResult(writer));
 			return writer;
 		} catch (Throwable e) {
