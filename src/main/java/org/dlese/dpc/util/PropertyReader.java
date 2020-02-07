@@ -14,6 +14,7 @@ public class PropertyReader {
 
   private static Properties properties;
   private static URL solution;
+  private static String fileLocation = "";
 
   private PropertyReader() {
     loadProperties();
@@ -78,24 +79,26 @@ public class PropertyReader {
     String propertiesFile = "";
     Properties solProperties = new Properties();
 
-    solution = PropertyReader.class.getClassLoader().getResource("solution.properties");
+    solution = PropertyReader.class.getClassLoader().getResource("solution_oai.properties");
 
     if (solution != null) {
-      System.out.println("solution.properties found");
+      System.out.println("Solution URI is <" + solution.toString() + ">");
+
       try {
-        InputStream in = getInputStream("solution.properties");
+        InputStream in = getInputStream("solution_oai.properties");
         solProperties.load(in);
         in.close();
 
         String appname = solProperties.getProperty("appname");
         propertiesFile = appname + ".properties";
       } catch (IOException e) {
-        System.out.println("Exception" + e);
+        System.out.println("Could not read properties from solution_oai.properties file.");
       }
 
     } else {
-      System.out.println("solution.properties not found");
+      // Use Default location of properties file
       propertiesFile = DEFAULT_PROPERTY_FILE;
+      System.out.println("Trying default property file: <" + DEFAULT_PROPERTY_FILE + ">");
     }
 
     properties = new Properties();
@@ -105,8 +108,11 @@ public class PropertyReader {
       properties.putAll(solProperties);
       instream.close();
     } catch (IOException e) {
+      System.out.println("Got no properties to load...<" + propertiesFile + ">" + e);
       throw new ExceptionInInitializerError(e);
     }
+
+    System.out.println("Properties loaded successfully from " + fileLocation);
   }
 
   /**
@@ -136,20 +142,17 @@ public class PropertyReader {
     InputStream instream = null;
     // First try to search in file system
     try {
-      System.out.println("load " + filepath);
       instream = new FileInputStream(filepath);
-      new File(filepath).getAbsolutePath();
+      fileLocation = (new File(filepath)).getAbsolutePath();
     } catch (Exception e) {
       // try to get resource from classpath
-      System.out.println("load " + filepath);
       URL url = callingClass.getClassLoader().getResource(filepath);
       if (url != null) {
         instream = url.openStream();
-        url.getFile();
+        fileLocation = url.getFile();
       }
     }
     if (instream == null) {
-      System.out.println("not loaded " + filepath);
       throw new FileNotFoundException(filepath);
     }
     return instream;
