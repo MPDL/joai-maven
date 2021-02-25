@@ -311,6 +311,38 @@
 						<xsl:value-of select="'info:eu-repo/semantics/lecture'"/>
 					</xsl:when>
 
+					<xsl:when test="$publication-type = 'http://purl.org/eprint/type/blog-post'">
+						<xsl:value-of select="'info:eu-repo/semantics/other'"/>
+					</xsl:when>
+					
+					<xsl:when test="$publication-type = 'http://purl.org/escidoc/metadata/ves/publication-types/data-publication'">
+						<xsl:value-of select="'info:eu-repo/semantics/other'"/>
+					</xsl:when>
+					
+					<xsl:when test="$publication-type = 'http://purl.org/escidoc/metadata/ves/publication-types/interview'">
+						<xsl:value-of select="'info:eu-repo/semantics/other'"/>
+					</xsl:when>
+					
+					<xsl:when test="$publication-type = 'http://purl.org/eprint/type/preprint'">
+						<xsl:value-of select="'info:eu-repo/semantics/preprint'"/>
+					</xsl:when>
+					
+					<xsl:when test="$publication-type = 'http://purl.org/eprint/type/pre-registration-paper'">
+						<xsl:value-of select="'info:eu-repo/semantics/other'"/>
+					</xsl:when>
+					
+					<xsl:when test="$publication-type = 'http://purl.org/eprint/type/registered-report'">
+						<xsl:value-of select="'info:eu-repo/semantics/other'"/>
+					</xsl:when>
+					
+					<xsl:when test="$publication-type = 'http://purl.org/eprint/type/review-article'">
+						<xsl:value-of select="'info:eu-repo/semantics/article'"/>
+					</xsl:when>
+					
+					<xsl:when test="$publication-type = 'http://purl.org/escidoc/metadata/ves/publication-types/software'">
+						<xsl:value-of select="'info:eu-repo/semantics/other'"/>
+					</xsl:when>
+					
 					<xsl:otherwise>
 						<xsl:value-of select="$publication-type"/>
 					</xsl:otherwise>
