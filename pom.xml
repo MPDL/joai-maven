@@ -61,6 +61,19 @@
 		</plugins>
 	</build>
 
+	<distributionManagement>
+		<repository>
+			<id>releases</id>
+			<name>Nexus Managed Releases</name>
+			<url>https://rd.mpdl.mpg.de/nexus3/content/repositories/releases</url>
+		</repository>
+		<snapshotRepository>
+			<id>snapshots</id>
+			<name>Nexus Managed Snapshots</name>
+			<url>https://rd.mpdl.mpg.de/nexus3/content/repositories/snapshots</url>
+		</snapshotRepository>
+	</distributionManagement>
+	
 	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>
