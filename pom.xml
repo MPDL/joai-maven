@@ -7,7 +7,7 @@
 	<parent>
 		<groupId>de.mpg.mpdl.inge</groupId>
 		<artifactId>INGe</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
+		<version>8.4.9-SNAPSHOT</version>
 	</parent>
 	<artifactId>joai-maven</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
@@ -61,19 +61,6 @@
 		</plugins>
 	</build>
 
-	<distributionManagement>
-		<repository>
-			<id>releases</id>
-			<name>Nexus Managed Releases</name>
-			<url>https://rd.mpdl.mpg.de/nexus3/content/repositories/releases</url>
-		</repository>
-		<snapshotRepository>
-			<id>snapshots</id>
-			<name>Nexus Managed Snapshots</name>
-			<url>https://rd.mpdl.mpg.de/nexus3/content/repositories/snapshots</url>
-		</snapshotRepository>
-	</distributionManagement>
-	
 	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>
