@@ -536,6 +536,11 @@
 			<xsl:text>, </xsl:text>
 			<xsl:value-of select="concat(substring($person/eterms:given-name, 1, 1), '.')"/>
 		</xsl:if>
+		
+		<xsl:if test="$person/eterms:orcid != ''">
+			<xsl:text> , </xsl:text>
+			<xsl:value-of select="$person/eterms:orcid"/>
+		</xsl:if>
 	</xsl:template>
 	
 	<xsl:template name="organization">
