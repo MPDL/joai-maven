@@ -343,6 +343,10 @@
 						<xsl:value-of select="'info:eu-repo/semantics/other'"/>
 					</xsl:when>
 					
+					<xsl:when test="$publication-type = 'http://purl.org/escidoc/metadata/ves/publication-types/magazine-article'">
+						<xsl:value-of select="'info:eu-repo/semantics/other'"/>
+					</xsl:when>
+					
 					<xsl:otherwise>
 						<xsl:value-of select="$publication-type"/>
 					</xsl:otherwise>
